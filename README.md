@@ -12,6 +12,10 @@ var express = require('express')
 var app = express.createServer()
 var lactate = require('lactate')()
 
+app.get('/', function(req, res) {
+  reurn lactate.serve('pages/land.html', req, res)
+})
+
 app.get('/files/*', function(req, res) {
   return lactate.serve(req.url.substring(1), req, res)
 })
@@ -49,6 +53,6 @@ Setting `expires` will have Lactase set appropriate `Expires` and `Cache-Control
 
 ###TODO
 
-`(1)` Express middleware
-`(2)` Expiration defaults, e.g. 'two days,' 'one month'
-`(3)` Redis integration
++ Express middleware
++ Expiration defaults, e.g. 'two days,' 'one month'
++ Redis integration
