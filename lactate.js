@@ -4,7 +4,7 @@ var zlib = require('zlib')
 var mime = require('mime')
 var path = require('path')
 
-var opts = {cache:false, expires:0}
+var opts = {cache:true, expires:0}
 var cache = {}
 
 var readAndSend = function(path, res, rObj) {
@@ -87,6 +87,8 @@ var serveFile = function(filePath, req, res) {
 var setOptions = function(k, v) {
   
   var isString = typeof(k) === 'string'
+
+  if (isString) k = k.toLowerCase()
 
   var hasProp = opts.hasOwnProperty.bind(opts)
 
