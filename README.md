@@ -58,3 +58,4 @@ Setting `expires` will have Lactase set appropriate `Expires` and `Cache-Control
 + Express middleware
 + Expiration defaults, e.g. 'two days,' 'one month'
 + Redis integration
++ Standalone server
