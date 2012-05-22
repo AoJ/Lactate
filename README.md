@@ -4,7 +4,7 @@ Very simple static file server, with a few electives.
 
 ## Example
 
-Just pass three arguments to the serve function (`path`, `request`, `response`). Lactate will stream your file to the client in the most efficient way (piping: readFile | gZip | response).
+Just pass three arguments to the serve function (`path`, `request`, `response`). Lactate will stream your file to the client in the most efficient way, by piping: readFile > gZip > response.
 
 ```js
 
@@ -51,7 +51,7 @@ The `cache` option will have Lactate save your files in memory. By default this 
 
 Setting `expires` will have Lactase set appropriate `Expires` and `Cache-Control` headers for client-side caching. This option represents seconds-from-now to expire.
 
-###TODO
+##TODO
 
 + Express middleware
 + Expiration defaults, e.g. 'two days,' 'one month'
