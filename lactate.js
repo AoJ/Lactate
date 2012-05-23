@@ -3,11 +3,47 @@ var fs = require('fs')
 var zlib = require('zlib')
 var mime = require('mime')
 var path = require('path')
+var stream = require('stream').Stream
+var util = require('util')
 
-var opts = {cache:true, expires:0}
+var opts = {
+  cache:true,
+  expires:0,
+  debug:false
+}
+
+function debug() {
+  var dbg = opts.debug
+  if (dbg) {
+    var func = console.log
+    if (typeof dbg === 'function') func = dbg
+    return func.apply(this, arguments)
+  }
+}
+
 var cache = {}
 
-var readAndSend = function(path, res, rObj) {
+function CacheStream(path, rObj, res) {
+  stream.call(this)
+  this.writable = true
+  var data = ''
+  this.end = function() {
+    debug(1, 'Read and served', path, 200)
+    res.end()
+    cache[path] = {
+      rObj:rObj,
+      data:data
+    }
+  }
+  this.write = function(d) {
+    res.write(d)
+    data=data+d
+  }
+}
+
+util.inherits(CacheStream, stream)
+
+var readAndSend = function(path, rObj, res) {
   var gz = zlib.createGzip()
   var rs = fs.createReadStream(path)
 
@@ -15,24 +51,19 @@ var readAndSend = function(path, res, rObj) {
     res.writeHead(200, rObj)
   })
 
-  gz.pipe(res)
-  var zipped = rs.pipe(gz)
-
-  if (opts.cache) {
-    zipped.on('end', function(d) {
-      cache[path] = {
-        rObj:rObj,
-        data:zipped._buffer
-      }
-    })
-  }
+  var cacheStream = new CacheStream(path, rObj, res)
+  gz.pipe(cacheStream)
+  rs.pipe(gz)
 }
 
 var serveFile = function(filePath, req, res) {
 
   var exists = path.existsSync(filePath)
 
+  debug(0, 'Serving file', filePath)
+
   if (!exists ) {
+    debug(1, 'Does not exist', 404)
     res.writeHead(404)
     return res.end()
   }
@@ -49,6 +80,7 @@ var serveFile = function(filePath, req, res) {
     parsedIMS = Date.parse(ims)
     parsedMTime = Date.parse(mtime)
     if (opts.expires&&parsedIMS===parsedMTime) {
+      debug(1, 'Client has file cached', 304)
       res.writeHead(304)
       return res.end()
     }
@@ -58,7 +90,8 @@ var serveFile = function(filePath, req, res) {
     var cached = cache[filePath]
     if (cached) {
       var lm = cached.rObj['Last-modified']
-      if (lm === parsedMTime) {
+      if (!lm || lm === parsedMTime) {
+        debug(1, 'Cached in memory', filePath, 200)
         res.writeHead(200, cached.rObj)
         return res.end(cached.data)
       }
@@ -70,27 +103,62 @@ var serveFile = function(filePath, req, res) {
 
   var rObj = { 
     'Content-Type':mimeType,
-    'Content-Encoding':'gzip',
-    'Date':date.toUTCString(),
-    'Last-Modified':mtime
+    'Content-Encoding':'gzip'
   }
 
   if (opts.expires) {
     date.setHours(date.getHours() + (opts.expires/3600))
+    rObj['Last-Modified'] = mtime
     rObj['Expires'] = date.toUTCString()
     rObj['Cache-Control'] = 'max-age='+opts.expires
   }
 
-  return readAndSend(filePath, res, rObj)
+  return readAndSend(filePath, rObj, res)
 }
 
-var setOptions = function(k, v) {
-  
+var makeDebugger = function() {
+
+  var level, fn
+
+  var arg1 = arguments[1]
+  var arg2 = arguments[2]
+
+  var type = function(a, b) {
+    return typeof a === b
+  }
+
+  if (type(arg1, 'number')) level = arg1
+  else arg2 = arg1
+
+  if (type(arg2, 'function')) fn = arg2
+
+  var lt = type(level, 'number')
+
+  var func = function() {
+    if ((lt && arguments[0] === level) || !lt) {
+      var func = console.log
+      var dbg = fn || opts.debug
+      if (type(dbg, 'function')) func = dbg
+      return func.apply(this, arguments)
+    }
+  }
+
+  return func
+}
+
+var setOption = function(k, v) {
+
+  if (!v) return
+
   var isString = typeof(k) === 'string'
 
-  if (isString) k = k.toLowerCase()
+  if (isString) k = k.toLowerCase();
 
   var hasProp = opts.hasOwnProperty.bind(opts)
+
+  if (k === 'debug' && typeof v !== 'boolean') {
+    v = makeDebugger.apply(this, arguments)
+  }
 
   if (isString && hasProp(k)) {
     opts[k] = v
@@ -103,13 +171,22 @@ var setOptions = function(k, v) {
   }
 }
 
+var getOption = function(k) {
+  var isString = typeof(k) === 'string'
+  if (!isString) return new Error('First argument must be a string')
+    var val = opts[k.toLowerCase()]
+  if (val) return val
+  else return new Error('No such option "'+k+'"')
+}
+
 module.exports = function(options) {
 
   if (options) setOptions(options)
 
-  return {
-    serve:serveFile,
-    set:setOptions
-  }
+    return {
+      serve:serveFile,
+      set:setOption,
+      get:getOption
+    }
 
 }
