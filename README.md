@@ -47,11 +47,36 @@ lactate.set('expires', null)
 
 ```
 
-Available options are currently `cache` (boolean)  and `expires` (seconds).
+Available options are currently `cache` (boolean), `expires` (seconds), and `debug`.
 
 The `cache` option will have Lactate save your files in memory. By default this is enabled, and there's no great reason to disable it.
 
 Setting `expires` will have Lactase set appropriate `Expires` and `Cache-Control` headers for client-side caching. This option represents seconds-from-now to expire.
+
+### Debugging
+
+Debugging is level-based. The `debug` function accepts a number and a callback function. The following syntaxes are valid.
+
+```js
+
+var lactate = require('lactate')({
+  debug:console.log
+})
+
+lactate.set('debug', 0, function(level, msg, path, statusCode) {
+  /* 
+    Do stuff
+
+    Note however that statusCode arguments are only
+    given for level 0 listeners
+  */
+})
+
+lactate.set('debug', 1, console.log)
+
+```
+
+More robust debugging will come in the future as I isolate the functionality into a module of its own.
 
 ##TODO
 
