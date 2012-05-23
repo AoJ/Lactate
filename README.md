@@ -1,6 +1,6 @@
 # Lactate
 
-Very simple static file server, with a few electives.
+Very simple static file handler, with a few electives.
 
 `npm install lactate`
 
