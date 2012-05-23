@@ -21,13 +21,12 @@
 
   Test parameters include
     
-    Status code
-    Content-Type
-    Content-Encoding
-    Content-Length
-
-    In-memory cache set
-    Expires headers
+    * Status code
+    * Content-Type
+    * Content-Encoding
+    * Content-Length
+    * In-memory cache
+    * Expires headers
   
 */
 
