@@ -37,7 +37,7 @@ var request = require('request')
 var lactate = require('../lib/lactate.js')()
 
 lactate.set({
-  root:'test',
+  root:'../test',
   cache:false
 })
 
