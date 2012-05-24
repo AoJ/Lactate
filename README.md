@@ -55,7 +55,7 @@ Setting `expires` will have Lactase set appropriate `Expires` and `Cache-Control
 
 ### Debugging
 
-Debugging is level-based. The `debug` function accepts a number and a callback function. The following syntaxes are valid.
+Debugging is level-based. The `debug` function accepts a number and a callback function, or a boolean. By default, the debugging function is console.log. The following syntaxes are valid.
 
 ```js
 
