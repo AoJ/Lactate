@@ -60,7 +60,7 @@ Debugging is level-based. The `debug` function accepts a number and a callback f
 ```js
 
 var lactate = require('lactate')({
-  debug:console.log
+  debug:true
 })
 
 lactate.set('debug', 0, function(level, msg, path, statusCode) {
