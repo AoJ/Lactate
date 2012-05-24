@@ -34,7 +34,7 @@
 var http = require('http')
 var request = require('request')
 
-var lactate = require('../lactate')()
+var lactate = require('../lib/lactate')()
 
 lactate.set('cache', false)
 
@@ -119,14 +119,9 @@ var testPaths = function(fn) {
     var url      = base + item
     var expect   = test.expect
     var name     = resKeys[o]
-    var complete = false
     var testId   = [n, o, p].join(':')
 
     function tryPass(val, ifFail) {
-      if (complete) return
-
-      var ob = {}
-      ob[resKeys[o]+':'+p] = val
 
       if (val) {
         var prev = completedTests[testId]
@@ -135,11 +130,9 @@ var testPaths = function(fn) {
           log(val, 'Passed')
         }
       }else {
-        ob['why'] = ifFail
         log(val, 'Failed:', ifFail)
       }
       
-      if (!val) complete = true
     }
 
     request(url, function(e, r, b) {
