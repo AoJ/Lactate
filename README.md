@@ -73,6 +73,7 @@ lactate.set('debug', 0, function(level, msg, path, statusCode) {
 })
 
 lactate.set('debug', 1, console.log)
+lactate.set({debug:false})
 
 ```
 
