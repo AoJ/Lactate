@@ -98,7 +98,6 @@ var validExpires = function(headers) {
 /* Hook into debug output */
 var lastEvent = ''
 lactate.set('debug', function(a,b,c,d) {
-  console.log(a,b,c,d)
   lastEvent = b
 })
 
