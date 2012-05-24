@@ -1,0 +1,14 @@
+{
+  "name": "Lactate",
+    "version": "0.1.1",
+    "description": "Simple assets server",
+    "keywords": ["static", "assets", "cache"],
+    "repository": "git://github.com/Weltschmerz/Lactate.git",
+    "author": "Weltschmerz <chlavois@gmail.com>",
+    "dependencies": {
+      "mime": "1.2.4",
+      "suckle": "0.0.1"
+    },
+    "main": "lib/lactate.js",
+    "engines": { "node": ">= 0.5.0" }
+}
