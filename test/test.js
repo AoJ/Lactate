@@ -34,9 +34,12 @@
 var http = require('http')
 var request = require('request')
 
-var lactate = require('../lib/lactate')()
+var lactate = require('../lib/lactate.js')()
 
-lactate.set('cache', false)
+lactate.set({
+  root:'test',
+  cache:false
+})
 
 var randomPort = ~~(Math.random() * 100) + 9000
 var base = 'http://localhost:'+randomPort+'/'
@@ -94,7 +97,8 @@ var validExpires = function(headers) {
 
 /* Hook into debug output */
 var lastEvent = ''
-lactate.set('debug', function(a,b) {
+lactate.set('debug', function(a,b,c,d) {
+  console.log(a,b,c,d)
   lastEvent = b
 })
 
@@ -142,7 +146,7 @@ var testPaths = function(fn) {
         console.log('Testing:', testId, '[', name, ']', item||'empty string')
 
         if (expect.length) {
-          tryPass(expect.length === b.length, 'Improper content length')
+          tryPass(b && expect.length === b.length, 'Improper content length')
         }
 
         var status = r.statusCode
