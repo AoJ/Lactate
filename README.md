@@ -47,11 +47,22 @@ lactate.set('expires', null)
 
 ```
 
-Available options are currently `cache` (boolean), `expires` (seconds), and `debug`.
+Available options are currently `cache` (boolean), `expires` (seconds), `root` (string), and `debug`.
 
 The `cache` option will have Lactate save your files in memory. By default this is enabled, and there's no great reason to disable it.
 
 Setting `expires` will have Lactase set appropriate `Expires` and `Cache-Control` headers for client-side caching. This option represents seconds-from-now to expire.
+
+Lactate comes with expiration defaults, such as "one day." All of the following should work.
+
+```code
+lactate.set('expires', 87500)
+//87500 seconds
+lactate.set('expires', 'two days')
+//172800 seconds
+lactate.set'expires', 'five weeks and one minute and ten seconds')
+//3024060 seconds
+```
 
 ### Debugging
 
