@@ -36,8 +36,10 @@ var request = require('request')
 
 var lactate = require('../lib/lactate.js')()
 
+var cwd = process.cwd()
+
 lactate.set({
-  root:'../test',
+  root:/test$/.test(cwd) ? cwd : 'test',
   cache:false
 })
 
