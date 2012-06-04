@@ -61,8 +61,10 @@ lactate.set('expires', 87500)
 lactate.set('expires', 'two days')
 //172800 seconds
 lactate.set'expires', 'five weeks and one minute and ten seconds')
-//3024060 seconds
+//3024070 seconds
 ```
+
+The `root` option will change the root directory from which to serve files. By default, the root is the current working directory.
 
 ### Debugging
 
