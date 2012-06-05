@@ -62,6 +62,9 @@ lactate.set('expires', 'two days')
 //172800 seconds
 lactate.set'expires', 'five weeks and one minute and ten seconds')
 //3024070 seconds
+lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
+//41050028 seconds
+
 ```
 
 The `root` option will change the root directory from which to serve files. By default, the root is the current working directory.
@@ -73,12 +76,12 @@ Debugging is level-based. The `debug` function accepts a number and a callback f
 ```js
 
 var lactate = require('lactate')({
-  debug:true
+  debug:true // Will use console.log to debug all events
 })
 
 lactate.set('debug', 0, function(level, msg, path, statusCode) {
   /* 
-    Do stuff
+    Captures all level 0 events
 
     Note however that statusCode arguments are only
     given for level 0 listeners
