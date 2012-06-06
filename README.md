@@ -12,7 +12,7 @@ Just pass three arguments to the serve function (`path`, `request`, `response`).
 
 var express = require('express')
 var app = express.createServer()
-var lactate = require('lactate')()
+var lactate = require('lactate').Lactate()
 
 app.get('/', function(req, res) {
   reurn lactate.serve('pages/land.html', req, res)
@@ -29,6 +29,45 @@ app.get('/images/:img', function(req, res) {
 
 app.listen(8080)
 
+```
+
+##The varieties of Lactate experience
+
+###Serving an individual file
+
+To serve an individual file, use the `file` method.
+
+```js
+  var Lactate = require('lactate')
+  app.get('*', function(req, res) {
+    return Lactate.file('images/somn.jpg', req, res)
+  })
+```
+
+###Namespacing a directory
+
+The `dir` method allows you to namespace a directory, for convenience.
+
+```js
+var Lactate = require('lactate')
+var images = Lactate.dir('images', {expires:'one day'})
+
+app.get('/images/:image', function(req, res) {
+  return images.serve(req.params.image, req, res)
+})
+```
+
+###Middleware
+
+For maximum convenience, you may use the `toMiddleware` method on directories.
+
+```js
+var Lactate = require('lactate')
+var images = Lactate.dir('images', {
+  expires:'one day'
+})
+
+app.use(images.toMiddleware()) //That's it!
 ```
 
 ##Options
