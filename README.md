@@ -33,6 +33,8 @@ app.listen(8080)
 
 ##The varieties of Lactate experience
 
+In the general case, the `Lactate` method returns an object with the methods `serve` `set` and `get`, importantly. However, there are more convenient methods exported by Lactate. They follow.
+
 ###Serving an individual file
 
 To serve an individual file, use the `file` method.
@@ -63,11 +65,12 @@ For maximum convenience, you may use the `toMiddleware` method on directories.
 
 ```js
 var Lactate = require('lactate')
+
 var images = Lactate.dir('images', {
   expires:'one day'
-})
+}).toMiddleware()
 
-app.use(images.toMiddleware()) //That's it!
+app.use(images) //That's it!
 ```
 
 ##Options
@@ -77,7 +80,9 @@ Options can be passed to the initialization function or using the `set` method.
 ```js
 
 //Passing to initialization function
-var lactate = require('lactate')({expires:172800})
+var lactate = require('lactate').Lactate({
+  expires:172800
+})
 
 //Set method
 lactate.set('expires', null)
