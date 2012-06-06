@@ -211,9 +211,6 @@ var testPaths = function(fn) {
 }
 
 var finished = function() {
-  var passed = Object.keys(completedTests).length
-  console.log('Completed', completedTestCount, 'tests')
-  console.log([passed, '/', completedTestCount, ' tests pass'].join(''))
   process.exit(0)
 }
 
