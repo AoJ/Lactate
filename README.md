@@ -136,7 +136,7 @@ More robust debugging will come in the future as I isolate the functionality int
 
 ##TODO
 
-+ Express middleware
++ ~~Express middleware~~
 + ~~Expiration defaults, e.g. 'two days,' 'one month'~~
 + Redis integration
 + Standalone server
