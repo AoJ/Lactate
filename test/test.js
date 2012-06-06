@@ -34,7 +34,7 @@
 var http = require('http')
 var request = require('request')
 
-var lactate = require('../lib/lactate.js')()
+var lactate = require('../lib/lactate.js').Lactate()
 
 var cwd = process.cwd()
 
