@@ -4,6 +4,8 @@ Very simple static file handler, with a few electives.
 
 `npm install lactate`
 
+`npm test lactate`
+
 ## Example
 
 Just pass three arguments to the serve function (`path`, `request`, `response`). Lactate will stream your file to the client in the most efficient way, by piping: readFile > gZip > response.
