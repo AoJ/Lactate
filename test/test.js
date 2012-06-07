@@ -17,7 +17,7 @@
   To test caching, pertaining
   tests are executed twice (n)
  
-  (n * o * p) - n = 20 total tests
+  (n * o * p) - p = 20 total tests
 
   Test parameters include
     
