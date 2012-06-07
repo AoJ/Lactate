@@ -1,6 +1,6 @@
 {
   "name": "lactate",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "description": "Simple assets server",
     "keywords": ["static", "assets", "cache"],
     "repository": "git://github.com/Weltschmerz/Lactate.git",
@@ -11,6 +11,6 @@
       "expiration_date": "0.2.0"
     },
     "main": "lib/lactate.js",
-    "scripts": { "test" : "node test/testjs" },
+    "scripts": { "test" : "node test/test.js" },
     "engines": { "node": ">= 0.5.0" }
 }
