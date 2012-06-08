@@ -6,6 +6,20 @@ Very simple static file handler, with a few electives.
 
 `npm test lactate`
 
+## Benchmark
+
+Preliminary benchmarks show that Lactate has a significant advantage over lightnode, despite that Lactate gzips out of the box.
+
+** lightnode **
+Requests per second:    1553.98 [#/sec] (mean)
+Document Length:        94854 bytes
+
+** Lactate **
+Requests per second:    1976.72 [#/sec] (mean)
+Document Length:        33673 bytes
+
+*See /benchmarks for details*
+
 ## Example
 
 Just pass three arguments to the serve function (`path`, `request`, `response`). Lactate will stream your file to the client in the most efficient way, by piping: readFile > gZip > response.
