@@ -32,20 +32,29 @@ Document Length:        33673 bytes
 
 ## Example
 
-Just pass three arguments to the serve function (`path`, `request`, `response`). Lactate will stream your file to the client in the most efficient way, by piping: readFile > gZip > response.
+Just pass three arguments to the serve function (`path` [optional], `request`, `response`). Lactate will stream your file to the client in the most efficient way, by piping: readFile > gZip > response.
 
 ```js
 
 var express = require('express')
 var app = express.createServer()
+
 var lactate = require('lactate').Lactate()
 
 app.get('/', function(req, res) {
-  reurn lactate.serve('pages/land.html', req, res)
+  return lactate.serve('pages/land.html', req, res)
 })
 
+lactate.set('root', 'files')
+
 app.get('/files/*', function(req, res) {
-  return lactate.serve(req.url.substring(1), req, res)
+  return lactate.serve(req, res)
+})
+
+lactate.set({
+  root:process.cwd(),
+  expires:'one day and 12 minutes',
+  debug:true
 })
 
 app.get('/images/:img', function(req, res) {
