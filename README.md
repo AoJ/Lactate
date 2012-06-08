@@ -10,13 +10,19 @@ Very simple static file handler, with a few electives.
 
 Preliminary benchmarks show that Lactate has a significant advantage over lightnode, despite that Lactate gzips out of the box.
 
-**lightnode**
+###lightnode
+
+```
 Requests per second:    1553.98 (mean)
 Document Length:        94854 bytes
+```
 
-**Lactate**
+###Lactate
+
+```
 Requests per second:    1976.72 (mean)
 Document Length:        33673 bytes
+```
 
 *See /benchmarks for details*
 
