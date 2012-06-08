@@ -10,6 +10,10 @@ Very simple static file handler, with a few electives.
 
 Preliminary benchmarks show that Lactate has a significant advantage over lightnode, despite that Lactate gzips out of the box.
 
+```
+ab -n 10000 http://localhost:8080/jquery.min.js
+```
+
 ###lightnode
 
 ```
