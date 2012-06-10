@@ -5,6 +5,7 @@
 
 ### cURL headers
 
+```
 HTTP/1.1 200 OK
 Content-Length: 0
 Content-Type: text/plain; charset=UTF-8
@@ -14,6 +15,7 @@ Server: bastard/0.6.8
 Last-Modified: Sun Jun 10 2012 07:40:12 GMT-0700 (PDT)
 Etag: 47b68dce8cb6805ad5b3ea4d27af92a241f4e29a5c12a274c852e4346a0500b4
 Connection: keep-alive
+```
 
 
 ### Document length
