@@ -1,0 +1,4 @@
+HTTP/1.1 404 Not Found
+Server: node-static/0.5.9
+Connection: keep-alive
+
