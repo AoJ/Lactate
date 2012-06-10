@@ -155,6 +155,8 @@ app.use(middleware)
 
 Options can be passed to the initialization function or using the `set` method.
 
+### Setting options
+
 ```js
 
 //Passing to initialization function
@@ -168,6 +170,8 @@ lactate.set('expires', null)
 //Either function accepts (key, value) or an object.
 
 ```
+
+### Options available
 
 + `root` [string] Local directory from which to serve files. By default, the current working directory.
 
