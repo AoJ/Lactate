@@ -179,7 +179,7 @@ Local directory from which to serve files. By default, the current working direc
 
 + `public` **string**
 
-Public directory exposed to clients. If set, only requests from /<directory> will complete.
+Public directory exposed to clients. If set, only requests from /*directory* will complete.
 
 + `cache` **boolean**
 
@@ -203,7 +203,7 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 
 + `debug` **boolean** (*optional*) **number** (*optional*) **function** (*optional*) 
 
-Debugging in Lactate is level-based (bases: `0`, `1`). Level `0` logs completed request information, status codes, etc.. Level `1` provides more details along the service. You may override the default debug function (console.log) with your own.
+Debugging in Lactate is level-based (*bases: `0`, `1`*). Level `0` logs completed request information, status codes, etc.. Level `1` provides more details along the service. You may override the default debug function (*console.log*) with your own.
 
 ```js
 
