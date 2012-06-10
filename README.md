@@ -136,6 +136,20 @@ var images = Lactate.dir('images', {
 app.use(images) //That's it!
 ```
 
+You may also pass additional options to the `toMiddleware()` function.
+
+```js
+var images = Lactate.dir('images', {
+  expires:'one day'
+})
+
+var middleware = images.toMiddleware({
+  public:'images'
+})
+
+app.use(middleware)
+```
+
 ##Options
 
 Options can be passed to the initialization function or using the `set` method.
@@ -144,7 +158,7 @@ Options can be passed to the initialization function or using the `set` method.
 
 //Passing to initialization function
 var lactate = require('lactate').Lactate({
-  expires:172800
+  expires:'two days'
 })
 
 //Set method
@@ -154,13 +168,13 @@ lactate.set('expires', null)
 
 ```
 
-Available options are currently `cache` (boolean), `expires` (seconds), `root` (string), and `debug`.
++ `root` [string] Local directory from which to serve files. By default, the current working directory.
 
-The `cache` option will have Lactate save your files in memory. By default this is enabled, and there's no great reason to disable it.
++ `public` [string] Public directory exposed to clients. If set, only requests from /<directory> will complete.
 
-Setting `expires` will have Lactase set appropriate `Expires` and `Cache-Control` headers for client-side caching. This option represents seconds-from-now to expire.
++ `cache` [boolean] Keep files in-memory. Enabled by default, and no great reason to disable.
 
-Lactate comes with expiration defaults, such as "one day." All of the following should work.
++ `expires` [number or string] Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
 
 ```code
 lactate.set('expires', 87500)
@@ -174,11 +188,7 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 
 ```
 
-The `root` option will change the root directory from which to serve files. By default, the root is the current working directory.
-
-### Debugging
-
-Debugging is level-based. The `debug` function accepts a number and a callback function, or a boolean. By default, the debugging function is console.log. The following syntaxes are valid.
++ `debug` [boolean (optional)] [number (optional)] [function (optional)] Debugging in Lactate is level-based (bases: `0`, `1`). Level `0` logs completed request information, status codes, etc.. Level `1` provides more details along the service. You may override the default debug function (console.log) with your own.
 
 ```js
 
@@ -199,8 +209,6 @@ lactate.set('debug', 1, console.log)
 lactate.set({debug:false})
 
 ```
-
-More robust debugging will come in the future as I isolate the functionality into a module of its own.
 
 ##TODO
 
