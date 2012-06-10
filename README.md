@@ -173,13 +173,13 @@ lactate.set('expires', null)
 
 ### Options available
 
-+ `root` [string] Local directory from which to serve files. By default, the current working directory.
++ `root` [*string*] Local directory from which to serve files. By default, the current working directory.
 
-+ `public` [string] Public directory exposed to clients. If set, only requests from /<directory> will complete.
++ `public` [*string*] Public directory exposed to clients. If set, only requests from /<directory> will complete.
 
-+ `cache` [boolean] Keep files in-memory. Enabled by default, and no great reason to disable.
++ `cache` [*boolean*] Keep files in-memory. Enabled by default, and no great reason to disable.
 
-+ `expires` [number or string] Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
++ `expires` [*number* or *string*] Pass this function a number (of seconds) or a string and appropriate headers will be set for client-side caching. Lactate comes with expiration defaults, such as 'two days' or '5 years and sixteen days' See [Expire](https://github.com/Weltschmerz/Expire) for details.
 
 ```code
 lactate.set('expires', 87500)
@@ -193,7 +193,7 @@ lactate.set('expires', 'one year and 2 months and seven weeks and 16 seconds')
 
 ```
 
-+ `debug` [boolean (optional)] [number (optional)] [function (optional)] Debugging in Lactate is level-based (bases: `0`, `1`). Level `0` logs completed request information, status codes, etc.. Level `1` provides more details along the service. You may override the default debug function (console.log) with your own.
++ `debug` [*boolean* (**optional**)] [*number* (**optional**)] [*function* (**optional**)] Debugging in Lactate is level-based (bases: `0`, `1`). Level `0` logs completed request information, status codes, etc.. Level `1` provides more details along the service. You may override the default debug function (console.log) with your own.
 
 ```js
 
