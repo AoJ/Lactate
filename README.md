@@ -60,7 +60,7 @@ Document Length:        33673 bytes
 
 ## Example
 
-Just pass three arguments to the serve function (`path` [optional], `request`, `response`). Lactate will stream your file to the client in the most efficient way, by piping: readFile > gZip > response.
+Just pass three arguments to the serve function `path` [optional], `request`, `response`. Lactate will stream your file to the client in the most efficient way, by piping: readFile > gZip > response.
 
 ```js
 
@@ -104,6 +104,7 @@ To serve an individual file, use the `file` method.
 
 ```js
   var Lactate = require('lactate')
+
   app.get('*', function(req, res) {
     return Lactate.file('images/somn.jpg', req, res)
   })
@@ -136,7 +137,7 @@ var images = Lactate.dir('images', {
 app.use(images) //That's it!
 ```
 
-You may also pass additional options to the `toMiddleware()` function.
+You may also pass additional options to the `toMiddleware` function.
 
 ```js
 var images = Lactate.dir('images', {
