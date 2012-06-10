@@ -16,12 +16,40 @@ ab -n 10000 http://localhost:8080/jquery.min.js
 
 ###lightnode
 
+```js
+var lightnode = require('lightnode')
+var files = new lightnode.FileServer('files')
+
+var http = require('http')
+var server = new http.Server()
+
+server.addListener('request', function(req, res) {
+  return files.receiveRequest(req, res)
+})
+
+server.listen(8080)
+```
+
 ```
 Requests per second:    1553.98 (mean)
 Document Length:        94854 bytes
 ```
 
 ###Lactate
+
+```js
+var lactate = require('lactate')
+var files = lactate.dir('files')
+
+var http = require('http')
+var server = new http.Server()
+
+server.addListener('request', function(req, res) {
+    return files.serve(req, res) 
+})
+
+server.listen(8080)
+```
 
 ```
 Requests per second:    1976.72 (mean)
