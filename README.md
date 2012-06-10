@@ -206,7 +206,5 @@ More robust debugging will come in the future as I isolate the functionality int
 
 + ~~Express middleware~~
 + ~~Expiration defaults, e.g. 'two days,' 'one month'~~
++ Minification
 + External (Redis) caching ability
-+ Standalone server
-
-owhfoweufh
