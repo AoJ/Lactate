@@ -8,7 +8,7 @@ Implementations were standard; potential optimizations exist for the various mod
 curl -I
 ```
 
-`Trials` results come from three runs of 
+`Trials` results come from three runs of apache bench
 
 ```
 ab -n 10000
@@ -101,8 +101,11 @@ Requests per second:    1652.71 [#/sec] (mean)
 
 ### Notes
 
-+ Passing in the "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
++ Passing "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
++ Failed to serve .js files, served .txt instead
 + Content-Length for cURL was `0 bytes` for valid `jquery.min.js` requests
++ Uses `Date()` instead of `new Date().toUTCString()` for  `Last-Modified` headers
++ Sets `Cache-Control` headers with or without a value
 
 ## connect
 
@@ -154,9 +157,11 @@ Requests per second:    770.62 [#/sec] (mean)
 ### Notes
 
 + 404 requests are unamenable to this method
-+ Setting maxAge on options object insignificantly decreased performance
++ Setting maxAge option insignificantly decreased performance
 
-## lactate
+## Lactate
+
+[https://github.com/Weltschmerz/Lactate](https://github.com/Weltschmerz/Lactate)
 
 ```js
 var lactate = require('lactate')
@@ -223,7 +228,15 @@ Requests per second:    2423.45 [#/sec] (mean)
 Requests per second:    2429.17 [#/sec] (mean)
 ```
 
+### Notes
+
++ Fastest module at serving `jquery.min.js` requests
++ Only of the tested modules that gzips
++ Document-Length is 1/2.8 the size of other modules
+
 ## lightnode
+
+[https://github.com/ngspinners/lightnode](https://github.com/ngspinners/lightnode)
 
 ```js
 var lightnode = require('lightnode')
@@ -289,11 +302,18 @@ Requests per second:    2292.06 [#/sec] (mean)
 Requests per second:    2266.78 [#/sec] (mean)
 ```
 
+### Notes
+
++ Missing `Content-Type` header
++ Anomalous apache bench `Document-Length` for `jquery.min.js` requests
+
 ## node-static
+
+[https://github.com/cloudhead/node-static](https://github.com/cloudhead/node-static)
 
 ```js
 var static = require('node-static')
-var files = new static.Server('../files', {cache:360000})
+var files = new static.Server('../files')
 
 var http = require('http')
 var server = new http.Server
@@ -312,7 +332,6 @@ server.listen(8080)
 
 ```
 HTTP/1.1 200 OK
-Cache-Control: max-age=360000
 Server: node-static/0.5.9
 Etag: "430854-94840-1339313377000"
 Date: Sun, 10 Jun 2012 15:42:22 GMT
@@ -361,6 +380,8 @@ Requests per second:    1265.43 [#/sec] (mean)
 ```
 
 ## paperboy
+
+[https://github.com/felixge/node-paperboy](https://github.com/felixge/node-paperboy)
 
 ```js
 var paperboy = require('paperboy')
@@ -428,7 +449,13 @@ Requests per second:    1778.58 [#/sec] (mean)
 Requests per second:    1721.78 [#/sec] (mean)
 ```
 
+### Notes
+
++ Slowest of the tested modules at serving `jquery.min.js` requests
+
 ## static-resource
+
+[https://github.com/atsuya/static-resource](https://github.com/atsuya/static-resource)
 
 ```js
 var fs = require('fs')
@@ -496,3 +523,7 @@ Requests per second:    2408.93 [#/sec] (mean)
 Requests per second:    2381.30 [#/sec] (mean)
 Requests per second:    2460.67 [#/sec] (mean)
 ```
+
+### Notes
+
++ Sends files synchronously
