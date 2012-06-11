@@ -21,6 +21,7 @@ Without server restarts in-between trials
 ## bastard
 
 *First commit* Dec 03, 2011
+
 *Latest commit* Mar 11, 2012
 
 [https://github.com/unprolix/bastard](https://github.com/unprolix/bastard)
@@ -115,9 +116,11 @@ Requests per second:    1652.71 [#/sec] (mean)
 ## connect
 
 [http://www.senchalabs.org/connect/static.html](http://www.senchalabs.org/connect/static.html)
+
 [https://github.com/senchalabs/connect/commits/master/lib/middleware/static.js](https://github.com/senchalabs/connect/commits/master/lib/middleware/static.js)
 
 *First commit* Jun 16, 2011
+
 *Latest commit* Jun 10, 2012
 
 ```js
