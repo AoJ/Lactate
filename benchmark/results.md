@@ -1,8 +1,10 @@
-# Nodejs static file handler benchmark comparison
-
 Sun Jun 10 22:59:00 PDT 2012
 
+# Node.js static file handler benchmark comparison
+
+This comparison tests requests to `/jquery.min.js` (200 status) and `/` (404).
 Implementations were standard; potential optimizations exist for the various modules.
+Further testing may compare various other request paths & file types.
 
 `cURL headers` were discovered using
 
