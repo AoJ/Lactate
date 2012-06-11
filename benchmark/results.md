@@ -157,7 +157,7 @@ Requests per second:    770.62 [#/sec] (mean)
 ### Notes
 
 + 404 requests are unamenable to this method
-+ Setting maxAge option insignificantly decreased performance
++ Sets `Cache-Control` headers with or without a value
 
 ## Lactate
 
@@ -232,7 +232,7 @@ Requests per second:    2429.17 [#/sec] (mean)
 
 + Fastest module at serving `jquery.min.js` requests
 + Only of the tested modules that gzips
-+ Document-Length is 1/2.8 the size of other modules
++ Document Length is 1 / 2.8 the size of other modules
 
 ## lightnode
 
@@ -305,7 +305,7 @@ Requests per second:    2266.78 [#/sec] (mean)
 ### Notes
 
 + Missing `Content-Type` header
-+ Anomalous apache bench `Document-Length` for `jquery.min.js` requests
++ Anomalous apache bench `Document Length` for `jquery.min.js` requests
 
 ## node-static
 
@@ -378,6 +378,10 @@ Requests per second:    1247.05 [#/sec] (mean)
 Requests per second:    1260.23 [#/sec] (mean)
 Requests per second:    1265.43 [#/sec] (mean)
 ```
+
+### Notes
+
++ Insigificant difference between `200` and `404` tests, indicating that (a) files are cached in-memory and (b) node-static tries to serve default files without breaking early if the path does not exist. Indeed, after more testing, requesting `http://localhost:8080/asdf` is much faster than `http://localhost:8080/`, averaging in the upper 1800 requests per second.
 
 ## paperboy
 
