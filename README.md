@@ -8,53 +8,7 @@ Very simple static file handler, with a few electives.
 
 ## Benchmark
 
-Preliminary benchmarks show that Lactate has a significant advantage over lightnode, despite that Lactate gzips out of the box.
-
-```
-ab -n 10000 http://localhost:8080/jquery.min.js
-```
-
-###lightnode
-
-```js
-var lightnode = require('lightnode')
-var files = new lightnode.FileServer('files')
-
-var http = require('http')
-var server = new http.Server()
-
-server.addListener('request', function(req, res) {
-  return files.receiveRequest(req, res)
-})
-
-server.listen(8080)
-```
-
-```
-Requests per second:    1553.98 (mean)
-Document Length:        94854 bytes
-```
-
-###Lactate
-
-```js
-var lactate = require('lactate')
-var files = lactate.dir('files')
-
-var http = require('http')
-var server = new http.Server()
-
-server.addListener('request', function(req, res) {
-    return files.serve(req, res) 
-})
-
-server.listen(8080)
-```
-
-```
-Requests per second:    1976.72 (mean)
-Document Length:        33673 bytes
-```
+[Preliminary benchmarks](https://github.com/Weltschmerz/Lactate/blob/master/benchmark/results.md) show that Lactate has a significant advantage over lightnode, and most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static)
 
 *See /benchmarks for details*
 
