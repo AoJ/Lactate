@@ -22,7 +22,7 @@ Without server restarts in-between trials
 
 */jquery.min.js results*
 
-[Graph of the /jquery.min.js results](http://i.imgur.com/vI9bf.png)
+![Graph of the /jquery.min.js results](http://i.imgur.com/vI9bf.png)
 
 ## bastard
 
