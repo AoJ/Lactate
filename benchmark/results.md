@@ -1,8 +1,6 @@
 
 # bastard
 
-## bench.js
-
 ```js
 var bastard = require('bastard')
 var Bastard = bastard.Bastard
