@@ -20,6 +20,10 @@ ab -n 10000
 
 Without server restarts in-between trials
 
+*/jquery.min.js results*
+
+[Graph of the /jquery.min.js results](http://i.imgur.com/vI9bf.png)
+
 ## bastard
 
 *First commit* Dec 03, 2011
