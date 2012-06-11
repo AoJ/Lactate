@@ -1,6 +1,12 @@
 
-bastard
-=======
+# bastard
+
+---
+
+## Notes
+
++ Passing in the "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
++ Content-Length for cURL was `0 bytes` for valid `jquery.min.js` requests
 
 ```js
 var bastard = require('bastard')
@@ -24,11 +30,6 @@ server.addListener('request', function(req, res) {
 
 server.listen(8080)
 ```
-
-## Notes
-
-+ Passing in the "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
-+ Content-Length for cURL was `0 bytes` for valid `jquery.min.js` requests
 
 ## 200 /jquery.min.js
 
