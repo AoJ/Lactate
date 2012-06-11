@@ -1,12 +1,5 @@
 
-# bastard
-
----
-
-## Notes
-
-+ Passing in the "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
-+ Content-Length for cURL was `0 bytes` for valid `jquery.min.js` requests
+## bastard
 
 ```js
 var bastard = require('bastard')
@@ -31,9 +24,9 @@ server.addListener('request', function(req, res) {
 server.listen(8080)
 ```
 
-## 200 /jquery.min.js
+### 200 /jquery.min.js
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 200 OK
@@ -48,13 +41,13 @@ Connection: keep-alive
 ```
 
 
-### Document length
+*Document length*
 
 ```
 Document Length:        94840 bytes
 ```
 
-###Trials
+*Trials*
 
 ```
 Requests per second:    546.11 [#/sec] (mean)
@@ -62,9 +55,9 @@ Requests per second:    548.67 [#/sec] (mean)
 Requests per second:    547.11 [#/sec] (mean)
 ```
 
-## 404 /
+### 404 /
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 404 Not Found
@@ -73,19 +66,24 @@ Server: bastard/0.6.8
 Connection: keep-alive
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        15 bytes
 ```
 
-###Trials
+*Trials*
 
 ```
 Requests per second:    1659.73 [#/sec] (mean)
 Requests per second:    1765.67 [#/sec] (mean)
 Requests per second:    1652.71 [#/sec] (mean)
 ```
+
+### Notes
+
++ Passing in the "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
++ Content-Length for cURL was `0 bytes` for valid `jquery.min.js` requests
 
 # connect
 
