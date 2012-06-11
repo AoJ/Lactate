@@ -1,5 +1,24 @@
+# Nodejs static file handler benchmark comparison
+
+Implementations were standard; potential optimizations exist for the various modules.
+
+`cURL headers` were discovered using
+
+```
+curl -I
+```
+
+`Trials` results come from three runs of 
+
+```
+ab -n 10000
+```
+
+Without server restarts in-between trials
 
 ## bastard
+
+[https://github.com/unprolix/bastard](https://github.com/unprolix/bastard)
 
 ```js
 var bastard = require('bastard')
@@ -87,6 +106,8 @@ Requests per second:    1652.71 [#/sec] (mean)
 
 ## connect
 
+[http://www.senchalabs.org/connect/static.html](http://www.senchalabs.org/connect/static.html)
+
 ```js
 var connect = require('connect')
 var files = connect.static('../files')
@@ -135,7 +156,7 @@ Requests per second:    770.62 [#/sec] (mean)
 + 404 requests are unamenable to this method
 + Setting maxAge on options object insignificantly decreased performance
 
-# lactate
+## lactate
 
 ```js
 var lactate = require('lactate')
@@ -151,9 +172,9 @@ server.addListener('request', function(req, res) {
 server.listen(8080)
 ```
 
-## 200 /jquery.min.js
+### 200 /jquery.min.js
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 200 OK
@@ -164,13 +185,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        33673 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    1877.07 [#/sec] (mean)
@@ -178,9 +199,9 @@ Requests per second:    1900.47 [#/sec] (mean)
 Requests per second:    1903.94 [#/sec] (mean)
 ```
 
-## 404 /
+### 404 /
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 404 Not Found
@@ -188,13 +209,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        0 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    2393.21 [#/sec] (mean)
@@ -202,7 +223,7 @@ Requests per second:    2423.45 [#/sec] (mean)
 Requests per second:    2429.17 [#/sec] (mean)
 ```
 
-# lightnode
+## lightnode
 
 ```js
 var lightnode = require('lightnode')
@@ -218,9 +239,9 @@ server.addListener('request', function(req, res) {
 server.listen(8080)
 ```
 
-## 200 /jquery.min.js
+### 200 /jquery.min.js
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 200 OK
@@ -231,13 +252,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        94854 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    1531.07 [#/sec] (mean)
@@ -245,9 +266,9 @@ Requests per second:    1559.13 [#/sec] (mean)
 Requests per second:    1557.25 [#/sec] (mean)
 ```
 
-## 404 /
+### 404 /
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 404 Not Found
@@ -260,7 +281,7 @@ Connection: keep-alive
 Document Length:        0 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    2241.32 [#/sec] (mean)
@@ -268,7 +289,7 @@ Requests per second:    2292.06 [#/sec] (mean)
 Requests per second:    2266.78 [#/sec] (mean)
 ```
 
-# node-static
+## node-static
 
 ```js
 var static = require('node-static')
@@ -285,9 +306,9 @@ server.listen(8080)
 
 ```
 
-## 200 /jquery.min.js
+### 200 /jquery.min.js
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 200 OK
@@ -300,13 +321,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        94840 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    1292.84 [#/sec] (mean)
@@ -314,9 +335,9 @@ Requests per second:    1296.69 [#/sec] (mean)
 Requests per second:    1300.48 [#/sec] (mean)
 ```
 
-## 404 /
+### 404 /
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 404 Not Found
@@ -325,13 +346,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        0 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    1247.05 [#/sec] (mean)
@@ -339,7 +360,7 @@ Requests per second:    1260.23 [#/sec] (mean)
 Requests per second:    1265.43 [#/sec] (mean)
 ```
 
-# paperboy
+## paperboy
 
 ```js
 var paperboy = require('paperboy')
@@ -354,9 +375,9 @@ server.addListener('request', function(req, res) {
 server.listen(8080);
 ```
 
-## 200 /jquery.min.js
+### 200 /jquery.min.js
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 200 OK
@@ -368,13 +389,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        94840 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    308.47 [#/sec] (mean)
@@ -382,9 +403,9 @@ Requests per second:    307.37 [#/sec] (mean)
 Requests per second:    317.03 [#/sec] (mean)
 ```
 
-## 404 /
+### 404 /
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 404 Not Found
@@ -393,13 +414,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        32 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    1738.96 [#/sec] (mean)
@@ -407,7 +428,7 @@ Requests per second:    1778.58 [#/sec] (mean)
 Requests per second:    1721.78 [#/sec] (mean)
 ```
 
-# static-resource
+## static-resource
 
 ```js
 var fs = require('fs')
@@ -427,9 +448,9 @@ server.addListener('request', function(req, res) {
 server.listen(8080)
 ```
 
-## 200 /jquery.min.js
+### 200 /jquery.min.js
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 200 OK
@@ -438,13 +459,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        94840 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    1276.35 [#/sec] (mean)
@@ -452,9 +473,9 @@ Requests per second:    1313.06 [#/sec] (mean)
 Requests per second:    1312.83 [#/sec] (mean)
 ```
 
-## 404 /
+### 404 /
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 404 Not Found
@@ -462,13 +483,13 @@ Connection: keep-alive
 
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        0 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    2408.93 [#/sec] (mean)
