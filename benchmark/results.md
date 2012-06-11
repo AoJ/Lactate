@@ -1,6 +1,31 @@
 
 # bastard
 
+## bench.js
+
+```js
+var bastard = require('bastard')
+var Bastard = bastard.Bastard
+
+var bastardObj = new Bastard({
+  base:'../files',
+  fingerprintURLPrefix:'/f/',
+  urlPrefix:'/',
+  rawURLPrefix:'/raw/'
+})
+
+bastardObj.preload(function() { })
+
+var http = require('http')
+var server = new http.Server
+
+server.addListener('request', function(req, res) {
+  bastardObj.possiblyHandleRequest(req, res)
+})
+
+server.listen(8080)
+```
+
 ## 200 /jquery.min.js
 
 ### cURL headers
@@ -59,6 +84,18 @@ Requests per second:    1652.71 [#/sec] (mean)
 
 # connect
 
+```js
+var connect = require('connect')
+var files = connect.static('../files')
+
+var http = require('http')
+var server = new http.Server
+
+server.addListener('request', files)
+
+server.listen(8080)
+```
+
 ## 200 /jquery.min.js
 
 ### cURL headers
@@ -91,6 +128,20 @@ Requests per second:    770.62 [#/sec] (mean)
 ## 404 /
 
 # lactate
+
+```js
+var lactate = require('lactate')
+var files = lactate.dir('../files')
+
+var http = require('http')
+var server = new http.Server()
+
+server.addListener('request', function(req, res) {
+    return files.serve(req, res) 
+})
+
+server.listen(8080)
+```
 
 ## 200 /jquery.min.js
 
@@ -145,6 +196,20 @@ Requests per second:    2429.17 [#/sec] (mean)
 
 # lightnode
 
+```js
+var lightnode = require('lightnode')
+var files = new lightnode.FileServer('../files')
+
+var http = require('http')
+var server = new http.Server()
+
+server.addListener('request', function(req, res) {
+  return files.receiveRequest(req, res)
+})
+
+server.listen(8080)
+```
+
 ## 200 /jquery.min.js
 
 ### cURL headers
@@ -196,6 +261,21 @@ Requests per second:    2266.78 [#/sec] (mean)
 ```
 
 # node-static
+
+```js
+var static = require('node-static')
+var files = new static.Server('../files', {cache:360000})
+
+var http = require('http')
+var server = new http.Server
+
+server.addListener('request', function(req, res) {
+  return files.serve(req, res)
+})
+
+server.listen(8080)
+
+```
 
 ## 200 /jquery.min.js
 
@@ -253,6 +333,19 @@ Requests per second:    1265.43 [#/sec] (mean)
 
 # paperboy
 
+```js
+var paperboy = require('paperboy')
+
+var http = require('http')
+var server = new http.Server
+
+server.addListener('request', function(req, res) {
+  paperboy.deliver('../files', req, res)
+})
+
+server.listen(8080);
+```
+
 ## 200 /jquery.min.js
 
 ### cURL headers
@@ -307,6 +400,24 @@ Requests per second:    1721.78 [#/sec] (mean)
 ```
 
 # static-resource
+
+```js
+var fs = require('fs')
+var resource = require('static-resource')
+var handler = resource.createHandler(fs.realpathSync('../files'))
+
+var http = require('http')
+var server = new http.Server
+
+server.addListener('request', function(req, res) {
+  if (!handler.handle(req.url, req, res)) {
+    res.writeHead(404)
+    return res.end()
+  }
+})
+
+server.listen(8080)
+```
 
 ## 200 /jquery.min.js
 
