@@ -85,7 +85,7 @@ Requests per second:    1652.71 [#/sec] (mean)
 + Passing in the "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
 + Content-Length for cURL was `0 bytes` for valid `jquery.min.js` requests
 
-# connect
+## connect
 
 ```js
 var connect = require('connect')
@@ -99,9 +99,9 @@ server.addListener('request', files)
 server.listen(8080)
 ```
 
-## 200 /jquery.min.js
+### 200 /jquery.min.js
 
-### cURL headers
+*cURL headers*
 
 ```
 HTTP/1.1 200 OK
@@ -114,13 +114,13 @@ Content-Length: 94840
 Connection: keep-alive
 ```
 
-### Document length
+*Document length*
 
 ```
 Document Length:        94840 bytes
 ```
 
-### Trials
+*Trials*
 
 ```
 Requests per second:    734.53 [#/sec] (mean)
@@ -128,7 +128,12 @@ Requests per second:    762.04 [#/sec] (mean)
 Requests per second:    770.62 [#/sec] (mean)
 ```
 
-## 404 /
+### 404 /
+
+### Notes
+
++ 404 requests are unamenable to this method
++ Setting maxAge on options object insignificantly decreased performance
 
 # lactate
 
