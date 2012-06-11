@@ -20,6 +20,10 @@ ab -n 10000
 
 Without server restarts in-between trials
 
+*/jquery.min.js results*
+
+![Graph of the /jquery.min.js results](http://i.imgur.com/vI9bf.png)
+
 ## bastard
 
 *First commit* Dec 03, 2011
@@ -112,7 +116,7 @@ Requests per second:    1652.71 [#/sec] (mean)
 + Passing "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
 + Failed to serve .js files, served .txt instead
 + Content-Length for cURL was `0 bytes` for valid `jquery.min.js` requests
-+ Uses `Date()` instead of `new Date().toUTCString()` for  `Last-Modified` headers
++ Uses relative date string for `Last-Modified` header
 + Sets `Cache-Control` headers with or without a value
 
 ## connect
