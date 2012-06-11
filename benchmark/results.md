@@ -115,13 +115,13 @@ Requests per second:    1652.71 [#/sec] (mean)
 
 ## connect
 
-[http://www.senchalabs.org/connect/static.html](http://www.senchalabs.org/connect/static.html)
-
-[https://github.com/senchalabs/connect/commits/master/lib/middleware/static.js](https://github.com/senchalabs/connect/commits/master/lib/middleware/static.js)
-
 *First commit* Jun 16, 2011
 
 *Latest commit* Jun 10, 2012
+
+[http://www.senchalabs.org/connect/static.html](http://www.senchalabs.org/connect/static.html)
+
+[https://github.com/senchalabs/connect/commits/master/lib/middleware/static.js](https://github.com/senchalabs/connect/commits/master/lib/middleware/static.js)
 
 ```js
 var connect = require('connect')
@@ -174,10 +174,11 @@ Requests per second:    770.62 [#/sec] (mean)
 
 ## Lactate
 
-[https://github.com/Weltschmerz/Lactate](https://github.com/Weltschmerz/Lactate)
-
 *First commit* Jun 05, 2012
+
 *Latest commit* Jun 10, 2012
+
+[https://github.com/Weltschmerz/Lactate](https://github.com/Weltschmerz/Lactate)
 
 ```js
 var lactate = require('lactate')
@@ -252,10 +253,11 @@ Requests per second:    2429.17 [#/sec] (mean)
 
 ## lightnode
 
-[https://github.com/ngspinners/lightnode](https://github.com/ngspinners/lightnode)
-
 *First commit* Feb 10, 2011
+
 *Latest commit* Mar 07, 2011
+
+[https://github.com/ngspinners/lightnode](https://github.com/ngspinners/lightnode)
 
 ```js
 var lightnode = require('lightnode')
@@ -328,10 +330,11 @@ Requests per second:    2266.78 [#/sec] (mean)
 
 ## node-static
 
-[https://github.com/cloudhead/node-static](https://github.com/cloudhead/node-static)
-
 *First commit* Jul 26, 2010
+
 *Latest commit* Aug 13, 2011
+
+[https://github.com/cloudhead/node-static](https://github.com/cloudhead/node-static)
 
 ```js
 var static = require('node-static')
@@ -407,10 +410,11 @@ Requests per second:    1265.43 [#/sec] (mean)
 
 ## paperboy
 
-[https://github.com/felixge/node-paperboy](https://github.com/felixge/node-paperboy)
-
 *First commit* Jan 17, 2010
+
 *Latest commit* Jun 04, 2012
+
+[https://github.com/felixge/node-paperboy](https://github.com/felixge/node-paperboy)
 
 ```js
 var paperboy = require('paperboy')
@@ -484,10 +488,11 @@ Requests per second:    1721.78 [#/sec] (mean)
 
 ## static-resource
 
-[https://github.com/atsuya/static-resource](https://github.com/atsuya/static-resource)
-
 *First commit* Aug 12, 2010
+
 *Latest commit* Mar 16, 2012
+
+[https://github.com/atsuya/static-resource](https://github.com/atsuya/static-resource)
 
 ```js
 var fs = require('fs')
