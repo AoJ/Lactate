@@ -8,7 +8,7 @@ Very simple static file handler, with a few electives.
 
 ## Benchmark
 
-[Preliminary benchmarks](https://github.com/Weltschmerz/Lactate/blob/master/benchmark/results.md) show that Lactate has a significant advantage over lightnode, and most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static)
+[Preliminary benchmarks](https://github.com/Weltschmerz/Lactate/blob/master/benchmark/results.md) show that Lactate has a significant advantage over  most worthy competitors on the [node modules wiki](https://github.com/joyent/node/wiki/Modules#wiki-web-frameworks-static)
 
 *See /benchmarks for details*
 
