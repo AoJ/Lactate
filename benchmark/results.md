@@ -114,7 +114,7 @@ Requests per second:    4400.29 [#/sec] (mean)
 
 + Fastest module at serving `jquery.min.js` and `santamonica.jpg` requests
 + Only of the tested modules that gzips
-+ Document Length is 1 / 2.8 the size of other modules
++ Document length is 1 / 2.8 the size of other modules
 
 
 ## bastard
@@ -216,7 +216,7 @@ Requests per second:    3945.08 [#/sec] (mean)
 + Content-Length for cURL was `0 bytes` for valid requests
 + Uses relative date string for `Last-Modified` header
 + Sets `Cache-Control` headers with or without a value
-+ Only of the tested modules whose `santamonica.jpg` performance exceeded `jquery.min.js` performance, despite being 10x the size. Reason for this is likely that bastard has automatic minification for scripts & styles. In the case of `jqueyr.min.js`, however,  any relatie advantages from minification are invisible to this comparison.
++ Only of the tested modules whose `santamonica.jpg` performance exceeded `jquery.min.js` performance, despite being 10x the size. Reason for this is likely that bastard has automatic minification for scripts & styles. In the case of `jquery.min.js`, however,  any relative advantages from minification are invisible to this comparison.
 
 ## connect
 
@@ -289,7 +289,7 @@ Document Length:        1051367 bytes
 Requests per second:    277.40 [#/sec] (mean)
 ```
 
-### asdf
+### /asdf
 
 *cURL headers*
 
@@ -475,7 +475,7 @@ Requests per second:    3725.74 [#/sec] (mean)
 
 ### Notes
 
-+ Insigificant req/s difference between `/jquery.min.js` and `/` requests, as node-static attempts to serve default files without breaking early if the path does not exist
++ Insigificant reqs / s difference between `/jquery.min.js` and `/` requests, as node-static attempts to serve default files without breaking early if the path does not exist
 
 ## paperboy
 
@@ -558,7 +558,7 @@ Requests per second:    3501.75 [#/sec] (mean)
 ### Notes
 
 + Slowest of the tested modules
-+ Wraps important functions in process.nexttick
++ Wraps important functions in process.nextTick
 
 ## static-resource
 
