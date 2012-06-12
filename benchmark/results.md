@@ -19,7 +19,6 @@ Tested modules were
 + static-resource
 
 Implementations were standard; potential optimizations exist for the various modules.
-Further testing may compare various other request paths & file types.
 
 Response headers were discovered using
 
@@ -27,13 +26,11 @@ Response headers were discovered using
 curl -I
 ```
 
-Bench results come from three runs of apache bench
+Bench results come from three runs of apache bench without server restarts.
 
 ```
 ab -c 100 -n 10000
 ```
-
-Without server restarts in-between trials
 
 ![jquery & santamonica graph](http://i.imgur.com/jFRb9.jpg)
 
@@ -64,11 +61,11 @@ server.listen(8080)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/javascript
-Content-Encoding: gzip
-Last-Modified: Sun, 10 Jun 2012 07:29:37 GMT
-Connection: keep-alive
+HTTP/1.1 200 OK
+Content-Type: application/javascript
+Content-Encoding: gzip
+Last-Modified: Sun, 10 Jun 2012 07:29:37 GMT
+Connection: keep-alive
 ```
 
 *Bench*
@@ -83,11 +80,11 @@ Requests per second:    2825.74 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Content-Type: image/jpeg
-Content-Encoding: gzip
-Last-Modified: Mon, 11 Jun 2012 12:33:46 GMT
-Connection: keep-alive
+HTTP/1.1 200 OK
+Content-Type: image/jpeg
+Content-Encoding: gzip
+Last-Modified: Mon, 11 Jun 2012 12:33:46 GMT
+Connection: keep-alive
 ```
 
 *Bench*
@@ -102,8 +99,8 @@ Requests per second:    1145.96 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 404 Not Found
-Connection: keep-alive
+HTTP/1.1 404 Not Found
+Connection: keep-alive
 ```
 
 *Bench*
@@ -115,7 +112,7 @@ Requests per second:    4400.29 [#/sec] (mean)
 
 ### Notes
 
-+ Fastest module at serving `jquery.min.js` requests
++ Fastest module at serving `jquery.min.js` and `santamonica.jpg` requests
 + Only of the tested modules that gzips
 + Document Length is 1 / 2.8 the size of other modules
 
@@ -154,15 +151,15 @@ server.listen(8080)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Content-Length: 0
-Content-Type: application/javascript; charset=utf-8
-Vary: Accept-Encoding
-Cache-Control: max-age=null
-Server: bastard/0.6.8
-Last-Modified: Sun Jun 10 2012 00:29:37 GMT-0700 (PDT)
-Etag: 47b68dce8cb6805ad5b3ea4d27af92a241f4e29a5c12a274c852e4346a0500b4
-Connection: keep-alive
+HTTP/1.1 200 OK
+Content-Length: 0
+Content-Type: application/javascript; charset=utf-8
+Vary: Accept-Encoding
+Cache-Control: max-age=null
+Server: bastard/0.6.8
+Last-Modified: Sun Jun 10 2012 00:29:37 GMT-0700 (PDT)
+Etag: 47b68dce8cb6805ad5b3ea4d27af92a241f4e29a5c12a274c852e4346a0500b4
+Connection: keep-alive
 ```
 
 *Bench*
@@ -177,16 +174,15 @@ Requests per second:    664.07 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Content-Length: 0
-Content-Type: image/jpeg
-Vary: Accept-Encoding
-Cache-Control: max-age=null
-Server: bastard/0.6.8
-Last-Modified: Mon Jun 11 2012 05:33:46 GMT-0700 (PDT)
-Etag: 62557bc0fcad63c5be8f8464ef8e0fa5667272f1cd8d6d203dc9069759656409
-Connection: keep-alive
-
+HTTP/1.1 200 OK
+Content-Length: 0
+Content-Type: image/jpeg
+Vary: Accept-Encoding
+Cache-Control: max-age=null
+Server: bastard/0.6.8
+Last-Modified: Mon Jun 11 2012 05:33:46 GMT-0700 (PDT)
+Etag: 62557bc0fcad63c5be8f8464ef8e0fa5667272f1cd8d6d203dc9069759656409
+Connection: keep-alive
 ```
 
 *Bench*
@@ -201,10 +197,10 @@ Requests per second:    1093.25 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 404 Not Found
-Content-Type: text/plain; charset=utf-8
-Server: bastard/0.6.8
-Connection: keep-alive
+HTTP/1.1 404 Not Found
+Content-Type: text/plain; charset=utf-8
+Server: bastard/0.6.8
+Connection: keep-alive
 ```
 
 *Bench*
@@ -217,9 +213,10 @@ Requests per second:    3945.08 [#/sec] (mean)
 ### Notes
 
 + Passing "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
-+ Content-Length for cURL was `0 bytes` for valid `jquery.min.js` requests
++ Content-Length for cURL was `0 bytes` for valid requests
 + Uses relative date string for `Last-Modified` header
 + Sets `Cache-Control` headers with or without a value
++ Only of the tested modules whose `santamonica.jpg` performance exceeded `jquery.min.js` performance, despite being 10x the size. Reason for this is likely that bastard has automatic minification for scripts & styles. In the case of `jqueyr.min.js`, however,  any relatie advantages from minification are invisible to this comparison.
 
 ## connect
 
@@ -232,6 +229,20 @@ Requests per second:    3945.08 [#/sec] (mean)
 [https://github.com/senchalabs/connect/commits/master/lib/middleware/static.js](https://github.com/senchalabs/connect/commits/master/lib/middleware/static.js)
 
 ```js
+var connect = require('connect')
+var files = connect.static('../../files')
+
+var http = require('http')
+var server = new http.Server
+
+server.addListener('request', function(req, res) {
+ files(req, res, function() {
+    res.writeHead(404)
+    res.end()
+ })
+})
+
+server.listen(8080)
 ```
 
 ### /jquery.min.js
@@ -239,14 +250,14 @@ Requests per second:    3945.08 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Date: Mon, 11 Jun 2012 16:45:26 GMT
-Cache-Control: public, max-age=0
-Last-Modified: Sun, 10 Jun 2012 07:29:37 GMT
-Content-Type: application/javascript
-Accept-Ranges: bytes
-Content-Length: 94840
-Connection: keep-alive
+HTTP/1.1 200 OK
+Date: Mon, 11 Jun 2012 16:45:26 GMT
+Cache-Control: public, max-age=0
+Last-Modified: Sun, 10 Jun 2012 07:29:37 GMT
+Content-Type: application/javascript
+Accept-Ranges: bytes
+Content-Length: 94840
+Connection: keep-alive
 ```
 
 *Bench*
@@ -261,14 +272,14 @@ Requests per second:    1235.85 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Date: Mon, 11 Jun 2012 16:45:43 GMT
-Cache-Control: public, max-age=0
-Last-Modified: Mon, 11 Jun 2012 12:33:46 GMT
-Content-Type: image/jpeg
-Accept-Ranges: bytes
-Content-Length: 1051367
-Connection: keep-alive
+HTTP/1.1 200 OK
+Date: Mon, 11 Jun 2012 16:45:43 GMT
+Cache-Control: public, max-age=0
+Last-Modified: Mon, 11 Jun 2012 12:33:46 GMT
+Content-Type: image/jpeg
+Accept-Ranges: bytes
+Content-Length: 1051367
+Connection: keep-alive
 ```
 
 *Bench*
@@ -283,8 +294,8 @@ Requests per second:    277.40 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 404 Not Found
-Connection: keep-alive
+HTTP/1.1 404 Not Found
+Connection: keep-alive
 ```
 
 *Bench*
@@ -326,11 +337,11 @@ server.listen(8080)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-last-modified: Sun, 10 Jun 2012 07:29:37 GMT
-transfer-encoding: chunked
-server: lightnode
-Connection: keep-alive
+HTTP/1.1 200 OK
+last-modified: Sun, 10 Jun 2012 07:29:37 GMT
+transfer-encoding: chunked
+server: lightnode
+Connection: keep-alive
 ```
 
 *Bench*
@@ -345,11 +356,11 @@ Requests per second:    2127.65 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-last-modified: Mon, 11 Jun 2012 12:33:46 GMT
-transfer-encoding: chunked
-server: lightnode
-Connection: keep-alive
+HTTP/1.1 200 OK
+last-modified: Mon, 11 Jun 2012 12:33:46 GMT
+transfer-encoding: chunked
+server: lightnode
+Connection: keep-alive
 ```
 
 *Bench*
@@ -364,9 +375,9 @@ Requests per second:    1035.92 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 404 Not Found
-server: lightnode
-Connection: keep-alive
+HTTP/1.1 404 Not Found
+server: lightnode
+Connection: keep-alive
 ```
 
 *Bench*
@@ -408,13 +419,13 @@ server.listen(8080)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Cache-Control: max-age=3600
-Server: node-static/0.5.9
-Etag: "430854-94840-1339313377000"
-Date: Mon, 11 Jun 2012 16:51:31 GMT
-Last-Modified: Sun, 10 Jun 2012 07:29:37 GMT
-Connection: keep-alive
+HTTP/1.1 200 OK
+Cache-Control: max-age=3600
+Server: node-static/0.5.9
+Etag: "430854-94840-1339313377000"
+Date: Mon, 11 Jun 2012 16:51:31 GMT
+Last-Modified: Sun, 10 Jun 2012 07:29:37 GMT
+Connection: keep-alive
 ```
 
 *Bench*
@@ -429,13 +440,13 @@ Requests per second:    2202.26 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Cache-Control: max-age=3600
-Server: node-static/0.5.9
-Etag: "431202-1051367-1339418026000"
-Date: Mon, 11 Jun 2012 16:51:40 GMT
-Last-Modified: Mon, 11 Jun 2012 12:33:46 GMT
-Connection: keep-alive
+HTTP/1.1 200 OK
+Cache-Control: max-age=3600
+Server: node-static/0.5.9
+Etag: "431202-1051367-1339418026000"
+Date: Mon, 11 Jun 2012 16:51:40 GMT
+Last-Modified: Mon, 11 Jun 2012 12:33:46 GMT
+Connection: keep-alive
 ```
 
 *Bench*
@@ -450,9 +461,9 @@ Requests per second:    1086.38 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 404 Not Found
-Server: node-static/0.5.9
-Connection: keep-alive
+HTTP/1.1 404 Not Found
+Server: node-static/0.5.9
+Connection: keep-alive
 ```
 
 *Bench*
@@ -492,12 +503,12 @@ server.listen(8080);
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Content-Type: text/javascript; charset=UTF-8
-ETag: "430854-94840-1339313377000"
-Last-Modified: Sun Jun 10 2012 00:29:37 GMT-0700 (PDT)
-Content-Length: 94840
-Connection: keep-alive
+HTTP/1.1 200 OK
+Content-Type: text/javascript; charset=UTF-8
+ETag: "430854-94840-1339313377000"
+Last-Modified: Sun Jun 10 2012 00:29:37 GMT-0700 (PDT)
+Content-Length: 94840
+Connection: keep-alive
 ```
 
 *Bench*
@@ -512,12 +523,12 @@ Requests per second:    430.55 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Content-Type: image/jpeg
-ETag: "431202-1051367-1339418026000"
-Last-Modified: Mon Jun 11 2012 05:33:46 GMT-0700 (PDT)
-Content-Length: 1051367
-Connection: keep-alive
+HTTP/1.1 200 OK
+Content-Type: image/jpeg
+ETag: "431202-1051367-1339418026000"
+Last-Modified: Mon Jun 11 2012 05:33:46 GMT-0700 (PDT)
+Content-Length: 1051367
+Connection: keep-alive
 ```
 
 *Bench*
@@ -532,9 +543,9 @@ Requests per second:    51.40 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 404 Not Found
-Content-Type: text/html
-Connection: keep-alive
+HTTP/1.1 404 Not Found
+Content-Type: text/html
+Connection: keep-alive
 ```
 
 *Bench*
@@ -580,9 +591,9 @@ server.listen(8080)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Content-Type: application/javascript
-Connection: keep-alive
+HTTP/1.1 200 OK
+Content-Type: application/javascript
+Connection: keep-alive
 ```
 
 *Bench*
@@ -598,9 +609,9 @@ Requests per second:    1708.44 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 200 OK
-Content-Type: image/jpeg
-Connection: keep-alive
+HTTP/1.1 200 OK
+Content-Type: image/jpeg
+Connection: keep-alive
 ```
 
 *Bench*
@@ -616,8 +627,8 @@ Requests per second:    377.39 [#/sec] (mean)
 *cURL headers*
 
 ```
-HTTP/1.1 404 Not Found
-Connection: keep-alive
+HTTP/1.1 404 Not Found
+Connection: keep-alive
 ```
 
 *Bench*
