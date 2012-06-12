@@ -212,7 +212,7 @@ Requests per second:    3945.08 [#/sec] (mean)
 
 ### Notes
 
-+ Passing "[default configuration](https://github.com/unprolix/bastard#configuration)" to `new Bastard()` was necessary
++ Passing ["default" configuration](https://github.com/unprolix/bastard#configuration) to `new Bastard()` was necessary
 + Content-Length for cURL was `0 bytes` for valid requests
 + Uses relative date string for `Last-Modified` header
 + Sets `Cache-Control` headers with or without a value
