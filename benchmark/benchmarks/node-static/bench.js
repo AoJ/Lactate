@@ -1,6 +1,6 @@
 
 var static = require('node-static')
-var files = new static.Server('../files', {cache:360000})
+var files = new static.Server('../../files')
 
 var http = require('http')
 var server = new http.Server

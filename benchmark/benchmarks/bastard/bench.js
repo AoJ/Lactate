@@ -3,13 +3,11 @@ var bastard = require('bastard')
 var Bastard = bastard.Bastard
 
 var bastardObj = new Bastard({
-  base:'../files',
+  base:'../../files',
   fingerprintURLPrefix:'/f/',
   urlPrefix:'/',
   rawURLPrefix:'/raw/'
 })
-
-bastardObj.preload(function() { })
 
 var http = require('http')
 var server = new http.Server

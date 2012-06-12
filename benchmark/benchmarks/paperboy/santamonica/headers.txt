@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Content-Type: image/jpeg
+ETag: "431202-1051367-1339418026000"
+Last-Modified: Mon Jun 11 2012 05:33:46 GMT-0700 (PDT)
+Content-Length: 1051367
+Connection: keep-alive
+

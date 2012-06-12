@@ -1,7 +1,7 @@
 
 var fs = require('fs')
 var resource = require('static-resource')
-var handler = resource.createHandler(fs.realpathSync('../files'))
+var handler = resource.createHandler(fs.realpathSync('../../files'))
 
 var http = require('http')
 var server = new http.Server

@@ -1,0 +1,6 @@
+HTTP/1.1 200 OK
+Content-Type: image/jpeg
+Content-Encoding: gzip
+Last-Modified: Mon, 11 Jun 2012 12:33:46 GMT
+Connection: keep-alive
+

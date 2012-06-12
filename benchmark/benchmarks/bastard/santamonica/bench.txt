@@ -1,0 +1,43 @@
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+
+
+Server Software:        bastard/0.6.8
+Server Hostname:        localhost
+Server Port:            8080
+
+Document Path:          /santamonica.jpg
+Document Length:        1051367 bytes
+
+Concurrency Level:      100
+Time taken for tests:   9.147 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Total transferred:      10516610000 bytes
+HTML transferred:       10513670000 bytes
+Requests per second:    1093.25 [#/sec] (mean)
+Time per request:       91.470 [ms] (mean)
+Time per request:       0.915 [ms] (mean, across all concurrent requests)
+Transfer rate:          1122786.13 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.3      1       3
+Processing:    34   90   5.4     91     108
+Waiting:        1    3   3.8      1      44
+Total:         36   91   5.5     92     109
+
+Percentage of the requests served within a certain time (ms)
+  50%     92
+  66%     93
+  75%     93
+  80%     94
+  90%     95
+  95%     96
+  98%     98
+  99%    100
+ 100%    109 (longest request)

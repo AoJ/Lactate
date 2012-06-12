@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Content-Length: 0
+Content-Type: image/jpeg
+Vary: Accept-Encoding
+Cache-Control: max-age=null
+Server: bastard/0.6.8
+Last-Modified: Mon Jun 11 2012 05:33:46 GMT-0700 (PDT)
+Etag: 62557bc0fcad63c5be8f8464ef8e0fa5667272f1cd8d6d203dc9069759656409
+Connection: keep-alive
+

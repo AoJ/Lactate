@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+Date: Mon, 11 Jun 2012 16:45:43 GMT
+Cache-Control: public, max-age=0
+Last-Modified: Mon, 11 Jun 2012 12:33:46 GMT
+Content-Type: image/jpeg
+Accept-Ranges: bytes
+Content-Length: 1051367
+Connection: keep-alive
+
