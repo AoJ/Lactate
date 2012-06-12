@@ -4,8 +4,8 @@ Tue Jun 12 03:00:01 PDT 2012
 
 This comparison has three tests
 
-+ `/jquery.min.js` *~100kb*
-+ `/santamonica.jpg` *~1mb*
++ `/jquery.min.js` *~100kb* [Link](https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js)
++ `/santamonica.jpg` *~1mb* [Link](http://i.imgur.com/upy9X.jpg)
 + `/asdf` (Invalid request)
 
 Tested modules were 
