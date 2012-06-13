@@ -34,6 +34,8 @@ ab -c 100 -n 10000
 
 ![jquery & santamonica graph](http://i.imgur.com/jFRb9.jpg)
 
+*node version* v0.6.18
+
 ## Lactate
 
 *First commit* Jun 05, 2012
